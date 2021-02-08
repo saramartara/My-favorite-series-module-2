@@ -38,17 +38,21 @@ function searchSerie(title) {
 
 function renderSeries() {
   let htmlCode = '';
-  htmlCode += '<li>';
-  htmlCode += '<div>';
 
   for (const serie of series) {
-    console.log(serie.name);
+    htmlCode += '<li>';
+    // htmlCode += '<div>';
     htmlCode += ` <h4>${serie.name}</h4>`;
-    htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/?
-      text=TV"alt="serie poster"/>`;
+    if (serie.image === null) {
+      htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/?
+      text=TV" title="${serie.name} series cover not available" alt="serial cover not available"/>`;
+    } else {
+      htmlCode += `<img src="${serie.image.medium}" title="${serie.name}" alt="${serie.name}  cover"`;
+    }
+    // htmlCode += '</div>';
+    htmlCode += '</li>';
   }
-  htmlCode += '</div>';
-  htmlCode += '</li>';
+
   seriesListElement.innerHTML = htmlCode;
 }
 
