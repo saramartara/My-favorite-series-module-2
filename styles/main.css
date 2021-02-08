@@ -8,3 +8,11 @@
 .page {
   margin: 20px;
 }
+.serie {
+  cursor: pointer;
+  border: 2px black solid;
+}
+.checked {
+  background-color: green;
+  color: indianred;
+}
