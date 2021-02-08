@@ -1,3 +1,10 @@
 * {
-  background-color: indianred;
+  background-color: #cd5c5c;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.page {
+  margin: 20px;
 }
