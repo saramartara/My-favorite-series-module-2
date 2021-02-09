@@ -22,7 +22,6 @@ formElement.addEventListener('submit', handleForm);
 // ----------------------SEARCH & API---------------
 function handleSearch() {
   let filterValue = filterElement.value;
-  console.log(filterValue);
   getSeriesFromApi(filterValue);
 }
 
@@ -37,17 +36,24 @@ function getSeriesFromApi(title) {
     });
 }
 
+// ------------------ FILTER-------------
+
+// funcion hadleFilter(){
+//   console.log(filtrando...)
+//   renderFavorites()
+// }
+
 //------------------------LISTEN -------------
 
 function listenFavoriteSeries(ev) {
   const favoriteSerie = ev.target.parentElement;
   const clickedSerieId = parseInt(favoriteSerie.id);
-  const serieFound = series.find(function (serie) {
-    return serie.id === clickedSerieId;
-  });
-  const favoritesFoundIndex = favorites.findIndex(function (favorite) {
-    return favorite.id === clickedSerieId;
-  });
+  const serieFound = series.find((serie) => serie.id === clickedSerieId);
+
+  const favoritesFoundIndex = favorites.findIndex(
+    (favorite) => favorite.id === clickedSerieId
+  );
+
   if (favoritesFoundIndex === -1) {
     favorites.push(serieFound);
   } else {
@@ -65,7 +71,7 @@ function setInLocalStorage() {
 function getFromLocalStorage() {
   const localStorageSeries = localStorage.getItem('favorite');
   if (localStorageSeries === null) {
-    handleSearch();
+    getSeriesFromApi('a');
   } else {
     const arrayFavSeries = JSON.parse(localStorageSeries);
     favorites = arrayFavSeries;
@@ -79,8 +85,22 @@ function renderSeries(item, items) {
   let htmlCode = '';
 
   for (const serie of series) {
-    htmlCode += `<li id ="${serie.id}" class="js-serie serie">`;
-    htmlCode += ` <h4 class="serie__container--title">${serie.name}</h4>`;
+    let isSerieClass;
+
+    if (favorites.indexOf(serie.id) === -1) {
+      isSerieClass = 'serie';
+    } else {
+      isSerieClass = '';
+    }
+    let isFavoriteClass;
+    if (favorites.indexOf(serie.id) === -1) {
+      isFavoriteClass = '';
+    } else {
+      isFavoriteClass = 'selected';
+    } // esto iría en la clase de li - línea 102
+
+    htmlCode += `<li id ="${serie.id}" class="js-serie ${isSerieClass} ${isFavoriteClass} >`;
+    htmlCode += `<h4 class="serie__container--title">${serie.name}</h4>`;
     if (serie.image === null) {
       htmlCode += `<img class="serie__container--img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${serie.name}" alt="${serie.name} cover not available"/>`;
     } else {
@@ -96,14 +116,14 @@ function renderFavorites() {
 
   for (const fav of favorites) {
     htmlCode += '<li class="js-serie serie">';
-    htmlCode += '<div class="js-container serie__container">';
+    // htmlCode += '<div class="js-container serie__container">';
     htmlCode += ` <h4 class="serie__container--title">${fav.name}</h4>`;
     if (fav.image === null) {
       htmlCode += `<img class="serie__container--img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${fav.name}" alt="${fav.name} cover not available"/>`;
     } else {
       htmlCode += `<img src="${fav.image.medium}" title="${fav.name}" alt="${fav.name}  cover"/>`;
     }
-    htmlCode += '</div>';
+    // htmlCode += '</div>';
     htmlCode += '</li>';
   }
   favoritesListElement.innerHTML = htmlCode;

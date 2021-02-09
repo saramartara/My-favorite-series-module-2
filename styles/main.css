@@ -1,5 +1,4 @@
 * {
-  /* background-color: #cd5c5c; */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,7 +11,9 @@
   cursor: pointer;
   border: 2px black solid;
 }
-.checked {
-  background-color: green;
+
+.selected {
+  background-color: lightseagreen;
   color: indianred;
+  cursor: pointer;
 }
