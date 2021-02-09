@@ -9,23 +9,23 @@ const url = `http://api.tvmaze.com/search/shows?q=`;
 
 let series = [];
 let favorites = [];
--(
-  // -------------------SUBMIT FORM ------------
 
-  function handleForm(ev) {
-    ev.preventDefault();
-  }
-);
+// -------------------SUBMIT FORM ------------
+
+function handleForm(ev) {
+  ev.preventDefault();
+}
+
 formElement.addEventListener('submit', handleForm);
 
-// ----------------------SEARCH ---------------
+// ----------------------SEARCH & API---------------
 function handleSearch() {
   let filterValue = filterElement.value;
   console.log(filterValue);
-  getSeries(filterValue);
+  getSeriesFromApi(filterValue);
 }
 
-function getSeries(title) {
+function getSeriesFromApi(title) {
   fetch(url + title)
     .then((response) => response.json())
     .then((data) => {
@@ -41,28 +41,35 @@ function getSeries(title) {
 function listenFavoritesSeries(ev) {
   const favoriteSerie = ev.target.parentElement;
 
-  // añado al array de favoritos si no está ya
+  // si favoriteSerie está en favorites
+  if (favoriteSerie)
+    // añado al array de favoritos si no está ya
 
-  favorites.push(favoriteSerie);
+    favorites.push(favoriteSerie);
 
   //guardo en localStorage y pinto en listado favoritos
   // renderFavorites();
 
-  setLocalStorage();
+  setInLocalStorage();
 
   //aplico clase en listado búsqueda: fondo + color de letra
 }
 
 // ----------------------- LOCAL STORAGE -----------------
-function setLocalStorage() {
+function setInLocalStorage() {
   localStorage.setItem('favorite', JSON.stringify(favorites));
 }
 
-function getLocalStorage() {
-  const favoritesLocal = JSON.parse(localStorage.getItem('favorite'));
-  console.log(favoritesLocal);
+function getFromLocalStorage() {
+  const localStorageSeries = localStorage.getItem('favorite');
+  if (localStorageSeries === null) {
+    handleSearch();
+  } else {
+    const arrayFavSeries = JSON.parse(localStorageSeries);
+    favorites = arrayFavSeries;
+    console.log(`cojo esto de local storage ${favorites}`);
+  }
 }
-getLocalStorage();
 
 //----------------------------- RENDER---------------
 
@@ -95,3 +102,6 @@ function renderSeries() {
 
 seriesListElement.addEventListener('click', listenFavoritesSeries);
 searchElement.addEventListener('click', handleSearch);
+
+//--------------START ----------------
+getFromLocalStorage();
