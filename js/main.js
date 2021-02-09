@@ -4,6 +4,7 @@ const filterElement = document.querySelector('.js-filter');
 const searchElement = document.querySelector('.js-search');
 const formElement = document.querySelector('.js-form');
 const seriesListElement = document.querySelector('.js-seriesList');
+const favoritesListElement = document.querySelector('.js-favoritesList');
 
 const url = `http://api.tvmaze.com/search/shows?q=`;
 
@@ -38,21 +39,22 @@ function getSeriesFromApi(title) {
 
 //------------------------LISTEN -------------
 
-function listenFavoritesSeries(ev) {
+function listenFavoriteSeries(ev) {
   const favoriteSerie = ev.target.parentElement;
-
-  // si favoriteSerie está en favorites
-  if (favoriteSerie)
-    // añado al array de favoritos si no está ya
-
-    favorites.push(favoriteSerie);
-
-  //guardo en localStorage y pinto en listado favoritos
-  // renderFavorites();
-
+  const clickedSerieId = parseInt(favoriteSerie.id);
+  const serieFound = series.find(function (serie) {
+    return serie.id === clickedSerieId;
+  });
+  const favoritesFoundIndex = favorites.findIndex(function (favorite) {
+    return favorite.id === clickedSerieId;
+  });
+  if (favoritesFoundIndex === -1) {
+    favorites.push(serieFound);
+  } else {
+    favorites.splice(favoritesFoundIndex, 1);
+  }
   setInLocalStorage();
-
-  //aplico clase en listado búsqueda: fondo + color de letra
+  renderFavorites();
 }
 
 // ----------------------- LOCAL STORAGE -----------------
@@ -67,41 +69,50 @@ function getFromLocalStorage() {
   } else {
     const arrayFavSeries = JSON.parse(localStorageSeries);
     favorites = arrayFavSeries;
-    console.log(`cojo esto de local storage ${favorites}`);
+    renderFavorites();
   }
 }
 
 //----------------------------- RENDER---------------
 
-function renderSeries() {
+function renderSeries(item, items) {
   let htmlCode = '';
 
   for (const serie of series) {
-    htmlCode += '<li class="js-serie serie">';
-    htmlCode += '<div class="js-container serie__container">';
+    htmlCode += `<li id ="${serie.id}" class="js-serie serie">`;
     htmlCode += ` <h4 class="serie__container--title">${serie.name}</h4>`;
     if (serie.image === null) {
       htmlCode += `<img class="serie__container--img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${serie.name}" alt="${serie.name} cover not available"/>`;
     } else {
       htmlCode += `<img src="${serie.image.medium}" title="${serie.name}" alt="${serie.name}  cover"/>`;
     }
-    htmlCode += '</div>';
     htmlCode += '</li>';
   }
-
   seriesListElement.innerHTML = htmlCode;
 }
 
-// function renderFavorites() {
-//   let fav = getLocalStorage();
-//   let htmlCode = '';
-//   for (const favorite of favorites) {
-//     console.log(favorite);
-//   }
-// }
+function renderFavorites() {
+  let htmlCode = '';
 
-seriesListElement.addEventListener('click', listenFavoritesSeries);
+  for (const fav of favorites) {
+    htmlCode += '<li class="js-serie serie">';
+    htmlCode += '<div class="js-container serie__container">';
+    htmlCode += ` <h4 class="serie__container--title">${fav.name}</h4>`;
+    if (fav.image === null) {
+      htmlCode += `<img class="serie__container--img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${fav.name}" alt="${fav.name} cover not available"/>`;
+    } else {
+      htmlCode += `<img src="${fav.image.medium}" title="${fav.name}" alt="${fav.name}  cover"/>`;
+    }
+    htmlCode += '</div>';
+    htmlCode += '</li>';
+  }
+  favoritesListElement.innerHTML = htmlCode;
+}
+
+seriesListElement.addEventListener('click', listenFavoriteSeries);
+
 searchElement.addEventListener('click', handleSearch);
+// ¿tendría sentido meter esto en la línea 72 (sí)? ¿y en la 66?
 
 //--------------START ----------------
 getFromLocalStorage();

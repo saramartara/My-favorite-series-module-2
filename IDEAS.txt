@@ -1,15 +1,3 @@
 
 
-
-
-
-
-
-//listen palette events  //revisar esto - en principio funciona con parentElement
-
-// function listenFavoritesSeries(ev) {
-//   const favoriteSeries = document.querySelectorAll('.js-series');
-//   for (const favoriteElement of favoriteSeries) {
-//     favoriteElement.addEventListener('click', handleFavorite);
-//   }
-// }
+  
