@@ -6,17 +6,19 @@ const formElement = document.querySelector('.js-form');
 const seriesListElement = document.querySelector('.js-seriesList');
 
 const url = `http://api.tvmaze.com/search/shows?q=`;
+
 let series = [];
 let favorites = [];
+-(
+  // -------------------SUBMIT FORM ------------
 
-//submit form
-
-function handleForm(ev) {
-  ev.preventDefault();
-}
+  function handleForm(ev) {
+    ev.preventDefault();
+  }
+);
 formElement.addEventListener('submit', handleForm);
 
-// search
+// ----------------------SEARCH ---------------
 function handleSearch() {
   let filterValue = filterElement.value;
   console.log(filterValue);
@@ -34,17 +36,35 @@ function getSeries(title) {
     });
 }
 
-//listen palette events  //revisar esto
+//------------------------LISTEN -------------
 
 function listenFavoritesSeries(ev) {
   const favoriteSerie = ev.target.parentElement;
+
+  // añado al array de favoritos si no está ya
+
   favorites.push(favoriteSerie);
-  console.log(favorites);
-  renderFavorites();
-  setInLocalStorage();
+
+  //guardo en localStorage y pinto en listado favoritos
+  // renderFavorites();
+
+  setLocalStorage();
+
+  //aplico clase en listado búsqueda: fondo + color de letra
 }
 
-// paint
+// ----------------------- LOCAL STORAGE -----------------
+function setLocalStorage() {
+  localStorage.setItem('favorite', JSON.stringify(favorites));
+}
+
+function getLocalStorage() {
+  const favoritesLocal = JSON.parse(localStorage.getItem('favorite'));
+  console.log(favoritesLocal);
+}
+getLocalStorage();
+
+//----------------------------- RENDER---------------
 
 function renderSeries() {
   let htmlCode = '';
