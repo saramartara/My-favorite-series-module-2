@@ -4,16 +4,71 @@
   padding: 0;
   list-style: none;
 }
-.page {
-  margin: 20px;
+.title {
+  margin-left: 30px;
 }
-.serie {
+
+.fav__title {
+  margin: 40px;
+  padding-left: 20px;
+}
+
+.container {
+  display: flex;
+  flex: wrap;
+  margin: 30px;
+}
+.li__serie {
   cursor: pointer;
-  border: 2px black solid;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  color: darkred;
+  font-size: 30px;
+  font-weight: 800;
+  background-color: pink;
+  margin: 20px;
+  padding: 20px;
+}
+.favLiTitle {
+  width: 40%;
+  margin-left: 10px;
 }
 
 .selected {
-  background-color: lightseagreen;
-  color: indianred;
+  background-color: darkred;
+  color: pink;
   cursor: pointer;
+}
+.li__fav {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.fav__img {
+  height: 150px;
+  width: 30%;
+  margin: 5px;
+}
+.btn {
+  height: 40px;
+  width: 100px;
+  background-color: darkred;
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+}
+.input {
+  margin: 30px;
+  height: 40px;
+  width: 200px;
+  border: none;
+  font-size: 20px;
+  border-bottom: 1px black solid;
+}
+.fa {
+  cursor: pointer;
+  margin-right: 20px;
 }

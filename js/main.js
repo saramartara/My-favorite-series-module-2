@@ -92,19 +92,19 @@ function renderSeries(item, items) {
     } else {
       isSerieClass = '';
     }
-    let isFavoriteClass;
+    let isSelectedClass;
     if (favorites.indexOf(serie.id) === -1) {
-      isFavoriteClass = '';
+      isSelectedClass = '';
     } else {
-      isFavoriteClass = 'selected';
+      isSelectedClass = 'selected';
     } // esto iría en la clase de li - línea 102
 
-    htmlCode += `<li id ="${serie.id}" class="js-serie ${isSerieClass} ${isFavoriteClass} >`;
-    htmlCode += `<h4 class="serie__container--title">${serie.name}</h4>`;
+    htmlCode += `<li id ="${serie.id}" class="js-serie li__serie ${isSerieClass} ${isSelectedClass} >`;
+    htmlCode += `<h3 class="liTitle">${serie.name}</h3>`;
     if (serie.image === null) {
-      htmlCode += `<img class="serie__container--img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${serie.name}" alt="${serie.name} cover not available"/>`;
+      htmlCode += `<img class="serie__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${serie.name}" alt="${serie.name} cover not available"/>`;
     } else {
-      htmlCode += `<img src="${serie.image.medium}" title="${serie.name}" alt="${serie.name}  cover"/>`;
+      htmlCode += `<img class="serie__img" src="${serie.image.medium}" title="${serie.name}" alt="${serie.name}  cover"/>`;
     }
     htmlCode += '</li>';
   }
@@ -115,13 +115,14 @@ function renderFavorites() {
   let htmlCode = '';
 
   for (const fav of favorites) {
-    htmlCode += '<li class="js-serie serie">';
+    htmlCode += `<li class="js-serie li__fav">`;
     // htmlCode += '<div class="js-container serie__container">';
-    htmlCode += ` <h4 class="serie__container--title">${fav.name}</h4>`;
+    htmlCode += `<i class="fa fa-times" aria-hidden="true"></i>`;
+    htmlCode += ` <h3 class="favLiTitle">${fav.name}</h3>`;
     if (fav.image === null) {
-      htmlCode += `<img class="serie__container--img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${fav.name}" alt="${fav.name} cover not available"/>`;
+      htmlCode += `<img class="fav__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${fav.name}" alt="${fav.name} cover not available"/>`;
     } else {
-      htmlCode += `<img src="${fav.image.medium}" title="${fav.name}" alt="${fav.name}  cover"/>`;
+      htmlCode += `<img class="fav__img" src="${fav.image.medium}" title="${fav.name}" alt="${fav.name}  cover"/>`;
     }
     // htmlCode += '</div>';
     htmlCode += '</li>';
