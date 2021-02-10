@@ -73,7 +73,8 @@ function addSerieToFavorites(ev) {
   } else {
     favorites.splice(favoritesFoundIndex, 1);
   }
-  setInLocalStorage();
+
+  renderSeries();
   renderFavorites();
 }
 
@@ -84,31 +85,24 @@ function listenClickedSeries() {
   }
 }
 
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
-// todo este código se puede borrar
+function handleDeleteFavorite(ev) {
+  const clickedFavorite = ev.target.id;
+  const favoriteFound = favorites.findIndex(
+    (favorite) => favorite.id === clickedFavorite
+  );
+  favorites.splice(favoriteFound, 1);
+  renderFavorites();
+  renderSeries();
+}
 
-//------------------RESET ---------------
+function listenXIcon() {
+  const xElements = document.querySelectorAll('.js-closeIcon');
+  for (const xElement of xElements) {
+    xElement.addEventListener('click', handleDeleteFavorite);
+  }
+}
+
+//------------------RESET--------------
 
 const resetButtonElement = document.querySelector('.js-resetBtn');
 function clearFavoriteList() {
@@ -154,14 +148,15 @@ function renderSeries() {
   seriesListElement.innerHTML = htmlCode;
 
   listenClickedSeries();
+  listenXIcon();
 }
 
 function renderFavorites() {
   let htmlCode = '';
 
   for (const fav of favorites) {
-    htmlCode += `<li class="js-serieFav li__fav">`;
-    htmlCode += `<i class="fa fa-times" aria-hidden="true"></i>`;
+    htmlCode += `<li id ="${fav.id}" class="js-serieFav li__fav">`;
+    htmlCode += `<i id ="${fav.id}" class="js-closeIcon fa fa-times" aria-hidden="true"></i>`;
     htmlCode += ` <h3 class="favLiTitle">${fav.name}</h3>`;
     if (fav.image === null) {
       htmlCode += `<img class="fav__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${fav.name}" alt="${fav.name} cover not available"/>`;
@@ -172,16 +167,8 @@ function renderFavorites() {
   }
 
   favoritesListElement.innerHTML = htmlCode;
-  // renderBtnReset();
+  listenXIcon();
 }
-
-// function renderBtnReset() {
-//   let htmlCode = '';
-//   htmlCode += `<button class="resetBtn js-resetBtn">`;
-//   htmlCode += `Borrar favoritos`;
-//   htmlCode += `</button>`;
-//   favoritesListElement.innerHTML += htmlCode;
-// }
 
 //--------------START ----------------
 getFromLocalStorage();
