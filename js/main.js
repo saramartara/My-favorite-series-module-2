@@ -11,14 +11,6 @@ const url = `http://api.tvmaze.com/search/shows?q=`;
 let series = [];
 let favorites = [];
 
-// -------------------SUBMIT FORM ------------
-
-function handleForm(ev) {
-  ev.preventDefault();
-}
-
-formElement.addEventListener('submit', handleForm);
-
 // ----------------------SEARCH & API---------------
 function handleSearch() {
   let filterValue = filterElement.value;
@@ -42,6 +34,14 @@ function getSeriesFromApi(title) {
 //   console.log(filtrando...)
 //   renderFavorites()
 // }
+
+// -------------------SUBMIT FORM ------------
+
+function handleForm(ev) {
+  ev.preventDefault();
+}
+
+formElement.addEventListener('submit', handleForm);
 
 //------------------------LISTEN -------------
 
@@ -116,7 +116,7 @@ function renderFavorites() {
 
   for (const fav of favorites) {
     htmlCode += `<li class="js-serie li__fav">`;
-    // htmlCode += '<div class="js-container serie__container">';
+
     htmlCode += `<i class="fa fa-times" aria-hidden="true"></i>`;
     htmlCode += ` <h3 class="favLiTitle">${fav.name}</h3>`;
     if (fav.image === null) {
@@ -124,12 +124,32 @@ function renderFavorites() {
     } else {
       htmlCode += `<img class="fav__img" src="${fav.image.medium}" title="${fav.name}" alt="${fav.name}  cover"/>`;
     }
-    // htmlCode += '</div>';
+
     htmlCode += '</li>';
   }
-  htmlCode += '<button class= "resetBtn js-reset">Borrar favoritos</button>';
+
   favoritesListElement.innerHTML = htmlCode;
+  // renderBtnReset();
 }
+
+// function renderBtnReset() {
+//   let htmlCode = '';
+//   htmlCode += `<button class="resetBtn js-resetBtn">`;
+//   htmlCode += `Borrar favoritos`;
+//   htmlCode += `</button>`;
+//   console.log('pintando botón reset');
+// }
+// favoritesListElement.innerHTML = htmlCode;
+
+// //--------------RESET BTN-----------
+
+// const resetButtonElement = document.querySelector('.js-resetBtn');
+
+// function resetInfo() {
+//   localStorage.clear();
+// }
+
+// resetButtonElement.addEventListener('click', resetInfo);
 
 seriesListElement.addEventListener('click', listenFavoriteSeries);
 
