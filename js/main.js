@@ -43,19 +43,11 @@ function getFromLocalStorage() {
 
 //-----------------FILTER --------------
 
-function handleSearch() {
+function handleSearch(ev) {
   let filterValue = filterElement.value;
   getSeriesFromApi(filterValue);
 }
 searchElement.addEventListener('click', handleSearch);
-
-// -------------------SUBMIT FORM ------------
-
-function handleForm(ev) {
-  ev.preventDefault();
-}
-
-formElement.addEventListener('submit', handleForm);
 
 // -------------------SUBMIT FORM ------------
 
@@ -91,6 +83,14 @@ function listenClickedSeries() {
     liElement.addEventListener('click', addSerieToFavorites);
   }
 }
+
+//------------------RESET ---------------
+
+const resetButtonElement = document.querySelector('.js-resetBtn');
+function clearFavoriteList() {
+  localStorage.clear();
+}
+resetButtonElement.addEventListener('click', clearFavoriteList);
 
 //----------------------------- RENDER---------------
 
@@ -147,22 +147,17 @@ function renderFavorites() {
     htmlCode += '</li>';
   }
 
-  // htmlCode += `<button class="resetBtn js-resetBtn">`;
-  // htmlCode += `Borrar favoritos`;
-  // htmlCode += `</button>`;
   favoritesListElement.innerHTML = htmlCode;
-  renderBtnReset();
+  // renderBtnReset();
 }
 
-function renderBtnReset() {
-  let htmlCode = '';
-  htmlCode += `<button class="resetBtn js-resetBtn">`;
-  htmlCode += `Borrar favoritos`;
-  htmlCode += `</button>`;
-  favoritesListElement.innerHTML += htmlCode;
-}
-
-searchElement.addEventListener('click', handleSearch);
+// function renderBtnReset() {
+//   let htmlCode = '';
+//   htmlCode += `<button class="resetBtn js-resetBtn">`;
+//   htmlCode += `Borrar favoritos`;
+//   htmlCode += `</button>`;
+//   favoritesListElement.innerHTML += htmlCode;
+// }
 
 //--------------START ----------------
 getFromLocalStorage();
