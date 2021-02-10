@@ -3,7 +3,7 @@
 const filterElement = document.querySelector('.js-filter');
 const searchElement = document.querySelector('.js-search');
 const formElement = document.querySelector('.js-form');
-let seriesListElement = document.querySelector('.js-seriesList');
+
 const favoritesListElement = document.querySelector('.js-favoritesList');
 
 const url = `http://api.tvmaze.com/search/shows?q=`;
@@ -17,6 +17,7 @@ function getSeriesFromApi(title) {
   fetch(url + title)
     .then((response) => response.json())
     .then((data) => {
+      series = [];
       for (const oneShow of data) {
         series.push(oneShow.show);
       }
@@ -25,13 +26,14 @@ function getSeriesFromApi(title) {
 }
 // ----------------------- LOCAL STORAGE -----------------
 function setInLocalStorage() {
-  localStorage.setItem('favorite', JSON.stringify(favorites));
+  const stringFavorites = JSON.stringify(favorites);
+  localStorage.setItem('favorite', stringFavorites);
 }
 
 function getFromLocalStorage() {
   let localStorageSeries = localStorage.getItem('favorite');
   if (localStorageSeries === null) {
-    handleSearch();
+    favorites = [];
   } else {
     const arrayFavSeries = JSON.parse(localStorageSeries);
     favorites = arrayFavSeries;
@@ -42,7 +44,6 @@ function getFromLocalStorage() {
 //-----------------FILTER --------------
 
 function handleSearch() {
-  seriesListElement.innerHTML = '';
   let filterValue = filterElement.value;
   getSeriesFromApi(filterValue);
 }
@@ -56,17 +57,10 @@ function handleForm(ev) {
 
 formElement.addEventListener('submit', handleForm);
 
-// ------------------ FILTER-------------
-
-// funcion hadleFilter(){
-//   console.log(filtrando...)
-//   renderFavorites()
-// }
-
 //------------------------LISTEN -------------
 
-function listenFavoriteSeries(ev) {
-  const favoriteSerie = ev.target.parentElement;
+function addSerieToFavorites(ev) {
+  const favoriteSerie = ev.currentTarget;
   const clickedSerieId = parseInt(favoriteSerie.id);
   const serieFound = series.find((serie) => serie.id === clickedSerieId);
 
@@ -83,11 +77,18 @@ function listenFavoriteSeries(ev) {
   renderFavorites();
 }
 
+function listenClickedSeries() {
+  const liElements = document.querySelectorAll('.js-serie');
+  for (const liElement of liElements) {
+    liElement.addEventListener('click', addSerieToFavorites);
+  }
+}
+
 //----------------------------- RENDER---------------
 
-function renderSeries(item, items) {
-  // let seriesListElement = document.querySelector('.js-seriesList');
-  seriesListElement.innerHTML = '';
+function renderSeries() {
+  const seriesListElement = document.querySelector('.js-seriesList');
+
   let htmlCode = '';
 
   for (const serie of series) {
@@ -105,7 +106,6 @@ function renderSeries(item, items) {
       isSelectedClass = 'selected';
     }
 
-    // seriesListElement.innerHTML = '';
     htmlCode += `<li id ="${serie.id}" class="js-serie li__serie ${isSerieClass} ${isSelectedClass} >`;
     htmlCode += `<h3 class="liTitle">${serie.name}</h3>`;
     if (serie.image === null) {
@@ -115,14 +115,17 @@ function renderSeries(item, items) {
     }
     htmlCode += '</li>';
   }
+
   seriesListElement.innerHTML = htmlCode;
+
+  listenClickedSeries();
 }
 
 function renderFavorites() {
   let htmlCode = '';
 
   for (const fav of favorites) {
-    htmlCode += `<li class="js-serie li__fav">`;
+    htmlCode += `<li class="js-serieFav li__fav">`;
     htmlCode += `<i class="fa fa-times" aria-hidden="true"></i>`;
     htmlCode += ` <h3 class="favLiTitle">${fav.name}</h3>`;
     if (fav.image === null) {
@@ -135,10 +138,7 @@ function renderFavorites() {
   favoritesListElement.innerHTML = htmlCode;
 }
 
-seriesListElement.addEventListener('click', listenFavoriteSeries);
-
 searchElement.addEventListener('click', handleSearch);
-// ¿tendría sentido meter esto en la línea 72 (sí)? ¿y en la 66?
 
 //--------------START ----------------
 getFromLocalStorage();
