@@ -3,7 +3,7 @@
 const filterElement = document.querySelector('.js-filter');
 const searchElement = document.querySelector('.js-search');
 const formElement = document.querySelector('.js-form');
-const seriesListElement = document.querySelector('.js-seriesList');
+let seriesListElement = document.querySelector('.js-seriesList');
 const favoritesListElement = document.querySelector('.js-favoritesList');
 
 const url = `http://api.tvmaze.com/search/shows?q=`;
@@ -11,19 +11,7 @@ const url = `http://api.tvmaze.com/search/shows?q=`;
 let series = [];
 let favorites = [];
 
-// -------------------SUBMIT FORM ------------
-
-function handleForm(ev) {
-  ev.preventDefault();
-}
-
-formElement.addEventListener('submit', handleForm);
-
-// ----------------------SEARCH & API---------------
-function handleSearch() {
-  let filterValue = filterElement.value;
-  getSeriesFromApi(filterValue);
-}
+// ---------------------API---------------
 
 function getSeriesFromApi(title) {
   fetch(url + title)
@@ -35,6 +23,38 @@ function getSeriesFromApi(title) {
       renderSeries();
     });
 }
+// ----------------------- LOCAL STORAGE -----------------
+function setInLocalStorage() {
+  localStorage.setItem('favorite', JSON.stringify(favorites));
+}
+
+function getFromLocalStorage() {
+  let localStorageSeries = localStorage.getItem('favorite');
+  if (localStorageSeries === null) {
+    handleSearch();
+  } else {
+    const arrayFavSeries = JSON.parse(localStorageSeries);
+    favorites = arrayFavSeries;
+    renderFavorites();
+  }
+}
+
+//-----------------FILTER --------------
+
+function handleSearch() {
+  seriesListElement.innerHTML = '';
+  let filterValue = filterElement.value;
+  getSeriesFromApi(filterValue);
+}
+searchElement.addEventListener('click', handleSearch);
+
+// -------------------SUBMIT FORM ------------
+
+function handleForm(ev) {
+  ev.preventDefault();
+}
+
+formElement.addEventListener('submit', handleForm);
 
 // ------------------ FILTER-------------
 
@@ -63,25 +83,11 @@ function listenFavoriteSeries(ev) {
   renderFavorites();
 }
 
-// ----------------------- LOCAL STORAGE -----------------
-function setInLocalStorage() {
-  localStorage.setItem('favorite', JSON.stringify(favorites));
-}
-
-function getFromLocalStorage() {
-  const localStorageSeries = localStorage.getItem('favorite');
-  if (localStorageSeries === null) {
-    getSeriesFromApi('a');
-  } else {
-    const arrayFavSeries = JSON.parse(localStorageSeries);
-    favorites = arrayFavSeries;
-    renderFavorites();
-  }
-}
-
 //----------------------------- RENDER---------------
 
 function renderSeries(item, items) {
+  // let seriesListElement = document.querySelector('.js-seriesList');
+  seriesListElement.innerHTML = '';
   let htmlCode = '';
 
   for (const serie of series) {
@@ -97,8 +103,9 @@ function renderSeries(item, items) {
       isSelectedClass = '';
     } else {
       isSelectedClass = 'selected';
-    } // esto iría en la clase de li - línea 102
+    }
 
+    // seriesListElement.innerHTML = '';
     htmlCode += `<li id ="${serie.id}" class="js-serie li__serie ${isSerieClass} ${isSelectedClass} >`;
     htmlCode += `<h3 class="liTitle">${serie.name}</h3>`;
     if (serie.image === null) {
@@ -116,7 +123,6 @@ function renderFavorites() {
 
   for (const fav of favorites) {
     htmlCode += `<li class="js-serie li__fav">`;
-    // htmlCode += '<div class="js-container serie__container">';
     htmlCode += `<i class="fa fa-times" aria-hidden="true"></i>`;
     htmlCode += ` <h3 class="favLiTitle">${fav.name}</h3>`;
     if (fav.image === null) {
@@ -124,7 +130,6 @@ function renderFavorites() {
     } else {
       htmlCode += `<img class="fav__img" src="${fav.image.medium}" title="${fav.name}" alt="${fav.name}  cover"/>`;
     }
-    // htmlCode += '</div>';
     htmlCode += '</li>';
   }
   favoritesListElement.innerHTML = htmlCode;
