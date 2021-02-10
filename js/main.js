@@ -73,7 +73,7 @@ function addSerieToFavorites(ev) {
   } else {
     favorites.splice(favoritesFoundIndex, 1);
   }
-  setInLocalStorage();
+
   renderSeries();
   renderFavorites();
 }
@@ -82,6 +82,23 @@ function listenClickedSeries() {
   const liElements = document.querySelectorAll('.js-serie');
   for (const liElement of liElements) {
     liElement.addEventListener('click', addSerieToFavorites);
+  }
+}
+
+function handleDeleteFavorite(ev) {
+  const clickedFavorite = ev.target.id;
+  const favoriteFound = favorites.findIndex(
+    (favorite) => favorite.id === clickedFavorite
+  );
+  favorites.splice(favoriteFound, 1);
+  renderFavorites();
+  renderSeries();
+}
+
+function listenXIcon() {
+  const xElements = document.querySelectorAll('.js-closeIcon');
+  for (const xElement of xElements) {
+    xElement.addEventListener('click', handleDeleteFavorite);
   }
 }
 
@@ -123,14 +140,15 @@ function renderSeries() {
   seriesListElement.innerHTML = htmlCode;
 
   listenClickedSeries();
+  listenXIcon();
 }
 
 function renderFavorites() {
   let htmlCode = '';
 
   for (const fav of favorites) {
-    htmlCode += `<li class="js-serieFav li__fav">`;
-    htmlCode += `<i class="fa fa-times" aria-hidden="true"></i>`;
+    htmlCode += `<li id ="${fav.id}" class="js-serieFav li__fav">`;
+    htmlCode += `<i id ="${fav.id}" class="js-closeIcon fa fa-times" aria-hidden="true"></i>`;
     htmlCode += ` <h3 class="favLiTitle">${fav.name}</h3>`;
     if (fav.image === null) {
       htmlCode += `<img class="fav__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${fav.name}" alt="${fav.name} cover not available"/>`;
@@ -140,9 +158,8 @@ function renderFavorites() {
     htmlCode += '</li>';
   }
   favoritesListElement.innerHTML = htmlCode;
+  listenXIcon();
 }
-
-searchElement.addEventListener('click', handleSearch);
 
 //--------------START ----------------
 getFromLocalStorage();
