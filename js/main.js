@@ -6,12 +6,11 @@ const formElement = document.querySelector('.js-form');
 
 const favoritesListElement = document.querySelector('.js-favoritesList');
 
-const url = `http://api.tvmaze.com/search/shows?q=`;
-
 let series = [];
 let favorites = [];
 
-// ---------------------API---------------
+// API
+const url = `http://api.tvmaze.com/search/shows?q=`;
 
 function getSeriesFromApi(title) {
   fetch(url + title)
@@ -24,7 +23,8 @@ function getSeriesFromApi(title) {
       renderSeries();
     });
 }
-// ----------------------- LOCAL STORAGE -----------------
+// local storage
+
 function setInLocalStorage() {
   const stringFavorites = JSON.stringify(favorites);
   localStorage.setItem('favorite', stringFavorites);
@@ -41,7 +41,7 @@ function getFromLocalStorage() {
   }
 }
 
-//-----------------FILTER --------------
+// filter
 
 function handleSearch() {
   let filterValue = filterElement.value;
@@ -49,7 +49,7 @@ function handleSearch() {
 }
 searchElement.addEventListener('click', handleSearch);
 
-// -------------------SUBMIT FORM ------------
+// submit form
 
 function handleForm(ev) {
   ev.preventDefault();
@@ -57,7 +57,7 @@ function handleForm(ev) {
 
 formElement.addEventListener('submit', handleForm);
 
-//------------------------LISTEN -------------
+// listen
 
 function addSerieToFavorites(ev) {
   const favoriteSerie = ev.currentTarget;
@@ -102,7 +102,7 @@ function listenXIcon() {
   }
 }
 
-//----------------------------- RENDER---------------
+// render
 
 function renderSeries() {
   const seriesListElement = document.querySelector('.js-seriesList');
@@ -161,5 +161,6 @@ function renderFavorites() {
   listenXIcon();
 }
 
-//--------------START ----------------
+// start
+
 getFromLocalStorage();
