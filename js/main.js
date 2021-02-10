@@ -93,14 +93,17 @@ function renderSeries() {
 
   for (const serie of series) {
     let isSerieClass;
+    const serieInFavorites = favorites.findIndex(
+      (favorite) => favorite.id === serie.id
+    );
 
-    if (favorites.indexOf(serie.id) === -1) {
+    if (serieInFavorites === -1) {
       isSerieClass = 'serie';
     } else {
       isSerieClass = '';
     }
     let isSelectedClass;
-    if (favorites.indexOf(serie.id) === -1) {
+    if (serieInFavorites === -1) {
       isSelectedClass = '';
     } else {
       isSelectedClass = 'selected';
