@@ -1,6 +1,6 @@
 # Mis series favoritas
 
-Este repositorio es para buscar series y guardarlas en un listado de favoritas. Es un ejercicio que forma parte del curso de formación de la Asociación Adalab.
+Este repositorio es para buscar series y guardarlas en un listado de favoritas. Es un ejercicio que forma parte del curso de formación de la [Asociación Adalab.](https://adalab.es/)
 
 El objetivo principal de la realización del proyecto es **aprender**.
 
