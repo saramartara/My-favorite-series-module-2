@@ -74,6 +74,7 @@ function addSerieToFavorites(ev) {
     favorites.splice(favoritesFoundIndex, 1);
   }
   setInLocalStorage();
+  renderSeries();
   renderFavorites();
 }
 
