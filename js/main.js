@@ -84,6 +84,30 @@ function listenClickedSeries() {
   }
 }
 
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+// todo este código se puede borrar
+
 //------------------RESET ---------------
 
 const resetButtonElement = document.querySelector('.js-resetBtn');
