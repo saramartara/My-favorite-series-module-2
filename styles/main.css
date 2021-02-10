@@ -72,3 +72,15 @@
   cursor: pointer;
   margin-right: 20px;
 }
+.resetBtn {
+  margin: 30px 0 0 50px;
+  height: 40px;
+  padding: 5px;
+  background-color: darkred;
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  align-self: auto;
+}

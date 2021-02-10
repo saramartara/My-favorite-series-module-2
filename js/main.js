@@ -71,7 +71,7 @@ function setInLocalStorage() {
 function getFromLocalStorage() {
   const localStorageSeries = localStorage.getItem('favorite');
   if (localStorageSeries === null) {
-    getSeriesFromApi('a');
+    getSeriesFromApi();
   } else {
     const arrayFavSeries = JSON.parse(localStorageSeries);
     favorites = arrayFavSeries;
@@ -127,6 +127,7 @@ function renderFavorites() {
     // htmlCode += '</div>';
     htmlCode += '</li>';
   }
+  htmlCode += '<button class= "resetBtn js-reset">Borrar favoritos</button>';
   favoritesListElement.innerHTML = htmlCode;
 }
 
