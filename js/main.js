@@ -147,8 +147,19 @@ function renderFavorites() {
     htmlCode += '</li>';
   }
 
+  // htmlCode += `<button class="resetBtn js-resetBtn">`;
+  // htmlCode += `Borrar favoritos`;
+  // htmlCode += `</button>`;
   favoritesListElement.innerHTML = htmlCode;
-  // renderBtnReset();
+  renderBtnReset();
+}
+
+function renderBtnReset() {
+  let htmlCode = '';
+  htmlCode += `<button class="resetBtn js-resetBtn">`;
+  htmlCode += `Borrar favoritos`;
+  htmlCode += `</button>`;
+  favoritesListElement.innerHTML += htmlCode;
 }
 
 searchElement.addEventListener('click', handleSearch);
