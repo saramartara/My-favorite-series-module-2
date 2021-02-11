@@ -10,7 +10,7 @@ let series = [];
 let favorites = [];
 
 // API
-const url = `http://api.tvmaze.com/search/shows?q=`;
+const url = `//api.tvmaze.com/search/shows?q=`;
 
 function getSeriesFromApi(title) {
   fetch(url + title)
