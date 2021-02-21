@@ -114,7 +114,7 @@ function renderSeries() {
 
   for (const serie of series) {
     let isSerieClass;
-    const serieInFavorites = favorites.findIndex(
+    let serieInFavorites = favorites.findIndex(
       (favorite) => favorite.id === serie.id
     );
 

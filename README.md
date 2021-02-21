@@ -29,7 +29,7 @@ The main objective is **to learn**.
 Fill input field and click _search_ button to get a list of Series from http://www.tvmaze.com/ server.
 
 To save a serie in your favorites list, just click on it. Your favorite list will be ready every time you access the website.
-You'll delete one by clicking again or with the X icon in favourite serie. Borrar Favoritos button to delete all series.
+You'll delete one by clicking again or with the X icon in favorite serie. Borrar Favoritos button to delete all series.
 
 ## Feedback and contribution:
 
