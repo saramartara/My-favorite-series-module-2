@@ -6,12 +6,11 @@ const formElement = document.querySelector('.js-form');
 
 const favoritesListElement = document.querySelector('.js-favoritesList');
 
-const url = `http://api.tvmaze.com/search/shows?q=`;
-
 let series = [];
 let favorites = [];
 
-// ---------------------API---------------
+// API
+const url = `//api.tvmaze.com/search/shows?q=`;
 
 function getSeriesFromApi(title) {
   fetch(url + title)
@@ -24,7 +23,8 @@ function getSeriesFromApi(title) {
       renderSeries();
     });
 }
-// ----------------------- LOCAL STORAGE -----------------
+// local storage
+
 function setInLocalStorage() {
   const stringFavorites = JSON.stringify(favorites);
   localStorage.setItem('favorite', stringFavorites);
@@ -41,7 +41,7 @@ function getFromLocalStorage() {
   }
 }
 
-//-----------------FILTER --------------
+// filter
 
 function handleSearch(ev) {
   let filterValue = filterElement.value;
@@ -49,7 +49,7 @@ function handleSearch(ev) {
 }
 searchElement.addEventListener('click', handleSearch);
 
-// -------------------SUBMIT FORM ------------
+// submit form
 
 function handleForm(ev) {
   ev.preventDefault();
@@ -57,7 +57,7 @@ function handleForm(ev) {
 
 formElement.addEventListener('submit', handleForm);
 
-//------------------------LISTEN -------------
+// listen
 
 function addSerieToFavorites(ev) {
   const favoriteSerie = ev.currentTarget;
@@ -76,6 +76,7 @@ function addSerieToFavorites(ev) {
 
   renderSeries();
   renderFavorites();
+  setInLocalStorage();
 }
 
 function listenClickedSeries() {
@@ -86,13 +87,15 @@ function listenClickedSeries() {
 }
 
 function handleDeleteFavorite(ev) {
-  const clickedFavorite = ev.target.id;
+  const XFavorite = ev.currentTarget;
+  const clickedXFavorite = parseInt(XFavorite.id);
   const favoriteFound = favorites.findIndex(
-    (favorite) => favorite.id === clickedFavorite
+    (favorite) => favorite.id === clickedXFavorite
   );
   favorites.splice(favoriteFound, 1);
   renderFavorites();
   renderSeries();
+  setInLocalStorage();
 }
 
 function listenXIcon() {
@@ -102,6 +105,7 @@ function listenXIcon() {
   }
 }
 
+<<<<<<< HEAD
 //------------------RESET--------------
 
 const resetButtonElement = document.querySelector('.js-resetBtn');
@@ -111,6 +115,9 @@ function clearFavoriteList() {
 resetButtonElement.addEventListener('click', clearFavoriteList);
 
 //----------------------------- RENDER---------------
+=======
+// render
+>>>>>>> master
 
 function renderSeries() {
   const seriesListElement = document.querySelector('.js-seriesList');
@@ -126,16 +133,10 @@ function renderSeries() {
     if (serieInFavorites === -1) {
       isSerieClass = 'serie';
     } else {
-      isSerieClass = '';
-    }
-    let isSelectedClass;
-    if (serieInFavorites === -1) {
-      isSelectedClass = '';
-    } else {
-      isSelectedClass = 'selected';
+      isSerieClass = 'selected';
     }
 
-    htmlCode += `<li id ="${serie.id}" class="js-serie li__serie ${isSerieClass} ${isSelectedClass} >`;
+    htmlCode += `<li id ="${serie.id}" class="js-serie li__serie ${isSerieClass} >`;
     htmlCode += `<h3 class="liTitle">${serie.name}</h3>`;
     if (serie.image === null) {
       htmlCode += `<img class="serie__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${serie.name}" alt="${serie.name} cover not available"/>`;
@@ -148,7 +149,6 @@ function renderSeries() {
   seriesListElement.innerHTML = htmlCode;
 
   listenClickedSeries();
-  listenXIcon();
 }
 
 function renderFavorites() {
@@ -168,7 +168,9 @@ function renderFavorites() {
 
   favoritesListElement.innerHTML = htmlCode;
   listenXIcon();
+  setInLocalStorage();
 }
 
-//--------------START ----------------
+// start
+
 getFromLocalStorage();
