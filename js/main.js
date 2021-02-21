@@ -137,7 +137,6 @@ function renderSeries() {
   seriesListElement.innerHTML = htmlCode;
 
   listenClickedSeries();
-  listenXIcon();
 }
 
 function renderFavorites() {
