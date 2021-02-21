@@ -121,16 +121,10 @@ function renderSeries() {
     if (serieInFavorites === -1) {
       isSerieClass = 'serie';
     } else {
-      isSerieClass = '';
-    }
-    let isSelectedClass;
-    if (serieInFavorites === -1) {
-      isSelectedClass = '';
-    } else {
-      isSelectedClass = 'selected';
+      isSerieClass = 'selected';
     }
 
-    htmlCode += `<li id ="${serie.id}" class="js-serie li__serie ${isSerieClass} ${isSelectedClass} >`;
+    htmlCode += `<li id ="${serie.id}" class="js-serie li__serie ${isSerieClass} >`;
     htmlCode += `<h3 class="liTitle">${serie.name}</h3>`;
     if (serie.image === null) {
       htmlCode += `<img class="serie__img" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" title="${serie.name}" alt="${serie.name} cover not available"/>`;
