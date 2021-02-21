@@ -1,8 +1,6 @@
-
-
 # Mis series favoritas
 
-Este repositorio es para buscar series y guardarlas en un listado de favoritas. Es un ejercicio que forma parte del curso de formación de la [Asociación Adalab.](https://adalab.es/)
+Este repositorio es una web interactiva para buscar series y guardarlas en un listado de favoritas. Es un ejercicio que forma parte del curso de formación de la [Asociación Adalab.](https://adalab.es/)
 
 El objetivo principal de la realización del proyecto es **aprender**.
 
@@ -10,7 +8,9 @@ El objetivo principal de la realización del proyecto es **aprender**.
 
 Rellenando el campo de búsqueda y haciendo click en el botón _search_ obtienes un listado del servidor de http://www.tvmaze.com/.
 
-Para guardar una serie en tu listado de favoritos sólo tienes que clicar sobre ella.
+Para guardar una serie en tu listado de favoritos sólo tienes que clicar sobre ella. Cada vez que accedas a la web tendrás tu listado de favoritos disponible.
+
+Si quieres borrar una serie del listado, pulsa sobre el icono de aspa. Si quieres borrar todo el listado, pulsa el botón de Borrar Favoritos.
 
 ## Feedback y contribución:
 
@@ -28,7 +28,8 @@ The main objective is **to learn**.
 
 Fill input field and click _search_ button to get a list of Series from http://www.tvmaze.com/ server.
 
-To save a serie in your favorites list, just click on it.
+To save a serie in your favorites list, just click on it. Your favorite list will be ready every time you access the website.
+You'll delete one by clicking again or with the X icon in favourite serie. Borrar Favoritos button to delete all series.
 
 ## Feedback and contribution:
 

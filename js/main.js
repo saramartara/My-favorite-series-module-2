@@ -155,6 +155,7 @@ function renderFavorites() {
   }
   favoritesListElement.innerHTML = htmlCode;
   listenXIcon();
+  setInLocalStorage();
 }
 
 // start
