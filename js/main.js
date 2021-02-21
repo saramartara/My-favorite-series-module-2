@@ -105,19 +105,18 @@ function listenXIcon() {
   }
 }
 
-<<<<<<< HEAD
 //------------------RESET--------------
 
 const resetButtonElement = document.querySelector('.js-resetBtn');
 function clearFavoriteList() {
   localStorage.clear();
+  favorites = [];
+  renderFavorites();
+  renderSeries();
 }
 resetButtonElement.addEventListener('click', clearFavoriteList);
 
-//----------------------------- RENDER---------------
-=======
 // render
->>>>>>> master
 
 function renderSeries() {
   const seriesListElement = document.querySelector('.js-seriesList');
