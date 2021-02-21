@@ -43,7 +43,7 @@ function getFromLocalStorage() {
 
 // filter
 
-function handleSearch() {
+function handleSearch(ev) {
   let filterValue = filterElement.value;
   getSeriesFromApi(filterValue);
 }
@@ -105,6 +105,17 @@ function listenXIcon() {
   }
 }
 
+//------------------RESET--------------
+
+const resetButtonElement = document.querySelector('.js-resetBtn');
+function clearFavoriteList() {
+  localStorage.clear();
+  favorites = [];
+  renderFavorites();
+  renderSeries();
+}
+resetButtonElement.addEventListener('click', clearFavoriteList);
+
 // render
 
 function renderSeries() {
@@ -153,6 +164,7 @@ function renderFavorites() {
     }
     htmlCode += '</li>';
   }
+
   favoritesListElement.innerHTML = htmlCode;
   listenXIcon();
   setInLocalStorage();
