@@ -87,13 +87,15 @@ function listenClickedSeries() {
 }
 
 function handleDeleteFavorite(ev) {
-  const clickedFavorite = ev.currentTarget.id;
+  const XFavorite = ev.currentTarget;
+  const clickedXFavorite = parseInt(XFavorite.id);
   const favoriteFound = favorites.findIndex(
-    (favorite) => favorite.id === clickedFavorite
+    (favorite) => favorite.id === clickedXFavorite
   );
   favorites.splice(favoriteFound, 1);
   renderFavorites();
   renderSeries();
+  setInLocalStorage();
 }
 
 function listenXIcon() {
