@@ -76,6 +76,7 @@ function addSerieToFavorites(ev) {
 
   renderSeries();
   renderFavorites();
+  setInLocalStorage();
 }
 
 function listenClickedSeries() {
@@ -86,7 +87,7 @@ function listenClickedSeries() {
 }
 
 function handleDeleteFavorite(ev) {
-  const clickedFavorite = ev.target.id;
+  const clickedFavorite = ev.currentTarget.id;
   const favoriteFound = favorites.findIndex(
     (favorite) => favorite.id === clickedFavorite
   );
