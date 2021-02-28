@@ -3,14 +3,21 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  background-color: midnightblue;
+  font-family: monospace;
 }
 .title {
-  margin-left: 30px;
+  margin: 50px 0 30px 80px;
+  /* margin-left: 100px; */
+  color: gold;
+  font-size: 40px;
 }
 
 .fav__title {
   margin: 40px;
   padding-left: 20px;
+  color: gold;
+  font-size: 30px;
 }
 
 .container {
@@ -18,26 +25,32 @@
   flex: wrap;
   margin: 30px;
 }
+.ulSeries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .li__serie {
   cursor: pointer;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  color: darkred;
+  color: gold;
   font-size: 30px;
-  font-weight: 800;
-  background-color: pink;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.24);
   margin: 20px;
-  padding: 20px;
+  padding-top: 20px;
 }
 .favLiTitle {
   width: 40%;
   margin-left: 10px;
+  color: gold;
 }
 
 .selected {
-  background-color: darkred;
-  color: pink;
+  background-color: firebrick;
+  color: midnightblue;
   cursor: pointer;
 }
 .li__fav {
@@ -45,42 +58,66 @@
   flex-direction: row-reverse;
   align-items: center;
 }
+.li__serie {
+  border-radius: 20px;
+  width: 300px;
+}
+.serie__img {
+  border-radius: 20px;
+}
 .fav__img {
   height: 150px;
-  width: 30%;
+  width: 100px;
   margin: 5px;
+  border-radius: 20px;
 }
 .btn {
   height: 40px;
-  width: 100px;
-  background-color: darkred;
-  color: white;
-  font-weight: 500;
+  width: 150px;
+  background-color: firebrick;
+  color: papayawhip;
+  font-weight: 600;
   font-size: 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 18px;
 }
+.btn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.35),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
 .input {
   margin: 30px;
+  padding-left: 20px;
   height: 40px;
-  width: 200px;
+  width: 400px;
   border: none;
   font-size: 20px;
-  border-bottom: 1px black solid;
+  border-bottom: 3px goldenrod solid;
+  border-radius: 18px;
+  background-color: rgba(0, 0, 0, 0.24);
+  color: papayawhip;
 }
 .fa {
   cursor: pointer;
-  margin-right: 20px;
+  margin: 0 20px;
+
+  color: gold;
 }
 .resetBtn {
   margin: 30px 0 0 50px;
   height: 40px;
+  width: 200px;
   padding: 5px;
-  background-color: darkred;
-  color: white;
-  font-weight: 500;
+  background-color: firebrick;
+  color: papayawhip;
+  font-weight: 600;
   font-size: 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 18px;
   align-self: auto;
+}
+.resetBtn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
