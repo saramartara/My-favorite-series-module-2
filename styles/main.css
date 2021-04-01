@@ -1,3 +1,129 @@
 * {
-  background-color: indianred;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: midnightblue;
+  font-family: monospace;
+}
+.title {
+  margin: 50px 0 30px 40px;
+  /* margin-left: 100px; */
+  color: rgb(20, 220, 193);
+  font-size: 40px;
+}
+
+.fav__title {
+  margin: 40px;
+  color: gold;
+  font-size: 25px;
+}
+
+.container {
+  display: flex;
+  flex: wrap;
+  margin: 30px;
+}
+.ulSeries {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.li__serie {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  color: gold;
+  font-size: 30px;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.24);
+  margin: 20px;
+  padding-top: 20px;
+}
+.favLiTitle {
+  width: 40%;
+  margin-left: 10px;
+  color: papayawhip;
+  font-size: 16px;
+}
+
+.selected {
+  background-color: firebrick;
+  color: midnightblue;
+  cursor: pointer;
+}
+.li__fav {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.li__serie {
+  border-radius: 20px;
+  width: 300px;
+}
+.serie__img {
+  border-radius: 20px;
+}
+.fav__img {
+  height: 150px;
+  width: 100px;
+  margin: 5px;
+  border-radius: 20px;
+}
+.btn {
+  height: 40px;
+  width: 150px;
+  background-color: firebrick;
+  color: papayawhip;
+  font-weight: 600;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px rgb(20, 220, 193) solid;
+  border-radius: 18px;
+}
+.btn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.35),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input {
+  margin: 30px;
+  padding-left: 20px;
+  height: 40px;
+  width: 400px;
+  border: none;
+  font-size: 20px;
+  border-bottom: 2px gold solid;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.24);
+  color: papayawhip;
+}
+.fa {
+  cursor: pointer;
+  margin: 0 20px;
+
+  color: papayawhip;
+}
+.fa-heartbeat {
+  color: firebrick;
+}
+.resetBtn {
+  margin: 30px 0 0 50px;
+  height: 40px;
+  width: 200px;
+  padding: 5px;
+  background-color: firebrick;
+  color: papayawhip;
+  font-weight: 600;
+  font-size: 20px;
+  border: none;
+  border-bottom: rgb(20, 220, 193) 2px solid;
+  border-radius: 18px;
+  align-self: auto;
+}
+.resetBtn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }

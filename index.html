@@ -4,11 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Series!</title>
+    <title>Mis series favoritas</title>
     <link rel="stylesheet" href="./styles/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
+      integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY="
+      crossorigin="anonymous"
+    />
   </head>
-  <body>
+  <body class="page">
     <h1 class="title">Buscador de series</h1>
+    <form class="js-form" method="GET">
+      <input type="text" class="js-filter input" />
+      <button class="js-search btn">Buscar</button>
+    </form>
+    <h2 class="fav__title">
+      Mis series favoritas<i class="fa fa-heartbeat" aria-hidden="true"></i>
+    </h2>
+    <div class="container">
+      <div class="fav_wrapper">
+        <ul class="js-favoritesList ulFav"></ul>
+        <button class="resetBtn js-resetBtn">Borrar favoritas</button>
+      </div>
+      <ul class="js-seriesList ulSeries"></ul>
+    </div>
 
     <script type="text/javascript" src="./js/main.js"></script>
   </body>
