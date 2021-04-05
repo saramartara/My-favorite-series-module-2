@@ -28,7 +28,7 @@ Si quieres borrar una serie del listado, pulsa sobre el icono de aspa. Pulsa el 
 
 ## Feedback y contribución
 
-¿Te interesa el proyecto? Si tienes sugerencias, dudas, ideas o te apetece comentar algo, adelante por favor. Puedes hacerlo a través de las _issues_ de este repositorio.
+¿Te interesa el proyecto? Si tienes sugerencias, dudas, ideas o te apetece comentar algo, adelante por favor. Puedes hacerlo a través de las _issues_ de este repositorio o contactándome por [email] o [linkedin].
 
 --- <> ---
 
