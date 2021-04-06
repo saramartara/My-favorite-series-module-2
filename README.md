@@ -1,3 +1,4 @@
+
 # Mis series favoritas
 
 Este repositorio es una web interactiva para buscar tus series favoritas y guardarlas en un listado personalizado. Es un ejercicio que forma parte del curso de formación de la [Asociación Adalab.](https://adalab.es/)
@@ -62,4 +63,9 @@ Are you interested in the project? Any suggestion, ideas or comments are very we
 
 ---
 
-[![example picture](.\images\my-favorite-2.png 'search sample')](http://beta.adalab.es/modulo-2-evaluacion-final-saramartara/)
+
+![fav-3](https://user-images.githubusercontent.com/75643468/113738057-ddae9d80-96fe-11eb-9c02-91f73701ca2b.png)
+![fav-1](https://user-images.githubusercontent.com/75643468/113738152-f28b3100-96fe-11eb-81d6-23ef0bbbe797.png)
+
+
+
